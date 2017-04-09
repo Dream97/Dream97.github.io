@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>初试OkHttp3实现登录功能 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="在OkHttp3之前的版本需要自己定义ResultCallback用于返回数据，而OkHttp3自带了Callback将这个简化不少，这次我就尝试用下OkHttp3来简单实现注册和登录功能 ####注意  因为是注册和登录的功能，我这里只用post 使用Map封装提交的Post参数 基础用法就不讲了，就直接开始实例吧   ####封装OkHttp工具类post与get的差别就在于post需要上传p">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初试OkHttp3实现登录功能">
+<meta property="og:url" content="http://yoursite.com/2017/04/10/初试OkHttp3实现登录功能/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在OkHttp3之前的版本需要自己定义ResultCallback用于返回数据，而OkHttp3自带了Callback将这个简化不少，这次我就尝试用下OkHttp3来简单实现注册和登录功能 ####注意  因为是注册和登录的功能，我这里只用post 使用Map封装提交的Post参数 基础用法就不讲了，就直接开始实例吧   ####封装OkHttp工具类post与get的差别就在于post需要上传p">
+<meta property="og:updated_time" content="2017-04-09T17:04:07.861Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="初试OkHttp3实现登录功能">
+<meta name="twitter:description" content="在OkHttp3之前的版本需要自己定义ResultCallback用于返回数据，而OkHttp3自带了Callback将这个简化不少，这次我就尝试用下OkHttp3来简单实现注册和登录功能 ####注意  因为是注册和登录的功能，我这里只用post 使用Map封装提交的Post参数 基础用法就不讲了，就直接开始实例吧   ####封装OkHttp工具类post与get的差别就在于post需要上传p">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -59,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-初试OkHttp3实现登录功能" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-初试OkHttp3实现登录功能" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/10/初试OkHttp3实现登录功能/" class="article-date">
   <time datetime="2017-04-09T16:42:34.325Z" itemprop="datePublished">2017-04-10</time>
@@ -74,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/10/初试OkHttp3实现登录功能/">初试OkHttp3实现登录功能</a>
+    <h1 class="article-title" itemprop="name">
+      初试OkHttp3实现登录功能
     </h1>
   
 
@@ -215,47 +218,23 @@ private void login() {
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/08/hello-world/" class="article-date">
-  <time datetime="2017-04-08T02:46:28.480Z" itemprop="datePublished">2017-04-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2017/04/08/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          Hello World
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/08/hello-world/">Hello World</a>
-    </h1>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#这是冯志远的博客</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/08/hello-world/" data-id="cj1axp5t30000mwuqxl11ag5d" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
 
 </section>
         
