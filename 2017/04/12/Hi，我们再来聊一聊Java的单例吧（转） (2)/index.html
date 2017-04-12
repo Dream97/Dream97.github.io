@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>single | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="本文转自http://www.iteye.com/news/32322 ##1. 前言单例(Singleton)应该是开发者们最熟悉的设计模式了，并且好像也是最容易实现的——基本上每个开发者都能够随手写出——但是，真的是这样吗？作为一个Java开发者，也许你觉得自己对单例模式的了解已经足够多了。我并不想危言耸听说一定还有你不知道的——毕竟我自己的了解也的确有限，但究竟你自己了解的程度到底怎样呢？往">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="single">
+<meta property="og:url" content="http://yoursite.com/2017/04/12/Hi，我们再来聊一聊Java的单例吧（转） (2)/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文转自http://www.iteye.com/news/32322 ##1. 前言单例(Singleton)应该是开发者们最熟悉的设计模式了，并且好像也是最容易实现的——基本上每个开发者都能够随手写出——但是，真的是这样吗？作为一个Java开发者，也许你觉得自己对单例模式的了解已经足够多了。我并不想危言耸听说一定还有你不知道的——毕竟我自己的了解也的确有限，但究竟你自己了解的程度到底怎样呢？往">
+<meta property="og:updated_time" content="2017-04-12T15:33:20.858Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="single">
+<meta name="twitter:description" content="本文转自http://www.iteye.com/news/32322 ##1. 前言单例(Singleton)应该是开发者们最熟悉的设计模式了，并且好像也是最容易实现的——基本上每个开发者都能够随手写出——但是，真的是这样吗？作为一个Java开发者，也许你觉得自己对单例模式的了解已经足够多了。我并不想危言耸听说一定还有你不知道的——毕竟我自己的了解也的确有限，但究竟你自己了解的程度到底怎样呢？往">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -59,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Hi，我们再来聊一聊Java的单例吧（转） (2)" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Hi，我们再来聊一聊Java的单例吧（转） (2)" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/12/Hi，我们再来聊一聊Java的单例吧（转） (2)/" class="article-date">
   <time datetime="2017-04-12T15:32:35.000Z" itemprop="datePublished">2017-04-12</time>
@@ -74,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/Hi，我们再来聊一聊Java的单例吧（转） (2)/">single</a>
+    <h1 class="article-title" itemprop="name">
+      single
     </h1>
   
 
@@ -142,205 +145,23 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-初试OkHttp3实现登录功能" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/10/初试OkHttp3实现登录功能/" class="article-date">
-  <time datetime="2017-04-09T16:42:34.325Z" itemprop="datePublished">2017-04-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2017/04/10/初试OkHttp3实现登录功能/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/10/初试OkHttp3实现登录功能/">初试OkHttp3实现登录功能</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在OkHttp3之前的版本需要自己定义ResultCallback用于返回数据，而OkHttp3自带了Callback将这个简化不少，这次我就尝试用下OkHttp3来简单实现注册和登录功能</p>
-<p>####注意</p>
-<ul>
-<li><strong>因为是注册和登录的功能，我这里只用post</strong></li>
-<li><strong>使用Map封装提交的Post参数</strong></li>
-<li><strong>基础用法就不讲了，就直接开始实例吧</strong></li>
-</ul>
-<hr>
-<p>####封装OkHttp工具类<br>post与get的差别就在于post需要上传post参数，我这里将参数封装在<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">public static void post(String address, okhttp3.Callback callback, Map&lt;String,String&gt; map)</div><div class="line">    &#123;</div><div class="line">        OkHttpClient client = new OkHttpClient();</div><div class="line">        FormBody.Builder builder = new  FormBody.Builder();</div><div class="line">        if (map!=null)</div><div class="line">        &#123;</div><div class="line">            for (Map.Entry&lt;String,String&gt; entry:map.entrySet())</div><div class="line">            &#123;</div><div class="line">                builder.add(entry.getKey(),entry.getValue());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        FormBody body = builder.build();</div><div class="line">        Request request = new Request.Builder()</div><div class="line">                .url(address)</div><div class="line">                .post(body)</div><div class="line">                .build();</div><div class="line">        client.newCall(request).enqueue(callback);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>####使用<br>现在封装好了post方法，只要我们在需要用到的时候调用<br>登录时直接调用一下代码即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">OkHttpUtil.post(url, new okhttp3.Callback() &#123;</div><div class="line">                @Override</div><div class="line">                public void onFailure(Call call, IOException e) &#123;</div><div class="line">                &#125;</div><div class="line">                @Override</div><div class="line">                public void onResponse(Call call, Response response) throws IOException &#123;</div><div class="line">                &#125;,map&#125;;</div></pre></td></tr></table></figure></p>
-<p>慢着，我们 这里的map呢？，<br>既然是登录,那就把id和密码封装到map中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">map.put(&quot;phone&quot;,id.getText().toString());                map.put(&quot;password&quot;,password.getText().toString());</div></pre></td></tr></table></figure></p>
-<p>####回调<br>由上面的代码可知，调用Post会重写onFailure和onResponse<br>onFailure是在调用失败时返回的，所以一般<br>打印错误信息<figure class="highlight plain"><figcaption><span>"onFailure: ",e);```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">onResponse是成功时返回请求值，如JSON等</div><div class="line">所以完整的回调是这样的</div></pre></td></tr></table></figure></p>
-<p> @Override<br> public void onFailure(Call call, IOException e) {<br>         Log.e(TAG, “onFailure: “,e);<br> }<br> @Override<br> public void onResponse(Call call, Response response) throws   IOException {<br>                    String responseBody = response.body().string();<br>                    try {<br>                        runOnUiThread(new Runnable() {<br>                            @Override<br>                            public void run() {<br>                                if(token!=null)<br>                                {<br>                                    CommonVari.token = token;<br>                                    Intent intent1 = new                                        Intent(LoginActivity.this,MainActivity.class);<br>                                    startActivity(intent1);<br>                                    CommonVari.FAG = 1;<br>                                    finish();<br>                                }else{<br>                                    new ToastUtil(LoginActivity.this,0);<br>                                }<br>                            }<br>                        });<br>                    } catch (JSONException e) {<br>                        e.printStackTrace();<br>                    }<br>                }<br>            },map);<br>        }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">其中ToastUtil是自定义的Toast，在登录信息错误时使用这里可以忽略，当信息没错时就可以跳转到主界面</div><div class="line"></div><div class="line">####完整代码</div><div class="line">OkHttpUtil.java</div></pre></td></tr></table></figure></p>
-<p>public class OkHttpUtil {<br>    public static void post(String address, okhttp3.Callback callback, Map<string,string> map)<br>    {<br>        OkHttpClient client = new OkHttpClient();<br>        FormBody.Builder builder = new FormBody.Builder();<br>        if (map!=null)<br>        {<br>            for (Map.Entry<string,string> entry:map.entrySet())<br>            {<br>                builder.add(entry.getKey(),entry.getValue());<br>            }<br>        }<br>        FormBody body = builder.build();<br>        Request request = new Request.Builder()<br>                .url(address)<br>                .post(body)<br>                .build();<br>        client.newCall(request).enqueue(callback);<br>    }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LoginActivity.java</div></pre></td></tr></table></figure></string,string></string,string></p>
-<p>public class LoginActivity extends AppCompatActivity implements View.OnClickListener{</p>
-<pre><code>String TAG = &quot;LoginActivity&quot;;
-private Button visitorBt;
-private EditText id;
-private EditText password;
-private Button registerBt;
-private Button loginBt;
-private Button modifyBt;
-//private Handler handler;
-
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_login);
-    id = (EditText) findViewById(R.id.login_id);
-    password = (EditText) findViewById(R.id.login_password);
-    loginBt = (Button) findViewById(R.id.login_bt);
-    registerBt = (Button) findViewById(R.id.register);
-    modifyBt = (Button) findViewById(R.id.login_modify_bt);
-    visitorBt = (Button) findViewById(R.id.visitor);
-    initView();
-
-}
-
-private void initView()
-{
-    //注册登录按钮
-    loginBt.setOnClickListener(this);
-    //注册按钮监听
-    registerBt.setOnClickListener(this);
-    //注册修改密码按钮
-    modifyBt.setOnClickListener(this);
-    //游客登录按钮
-    visitorBt.setOnClickListener(this);
-}
-
-@Override
-public void onClick(View v) {
-    switch (v.getId()){
-        case R.id.register:
-            Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
-            startActivity(intent);
-             break;
-        case R.id.login_bt:
-            login();
-            break;
-        case R.id.login_modify_bt:
-            Intent intent2 = new Intent(LoginActivity.this,ModifyPasswordActivity.class);
-            startActivity(intent2);
-            break;
-        case R.id.visitor:
-            Intent intent3 = new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intent3);
-            finish();
-            break;
-    }
-}
-
-/**
- * 处理登录事件
- */
-private void login() {
-    String url = Api.url+&quot;auth/login&quot;;
-    Map&lt;String,String&gt; map = new HashMap&lt;&gt;();
-    if(id.getText().toString().length()!=11)
-    {
-        new ToastUtil(LoginActivity.this, CommonVari.IDNULL);
-    }else if(password.getText().toString().length()&lt;6){
-        new ToastUtil(LoginActivity.this,CommonVari.LIT);
-    }
-    else{
-        map.put(&quot;phone&quot;,id.getText().toString());
-        map.put(&quot;password&quot;,password.getText().toString());
-
-        OkHttpUtil.post(url, new okhttp3.Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e(TAG, &quot;onFailure: &quot;,e);
-            }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String responseBody = response.body().string();
-                try {
-                    final String token = JsonUtil.getToken(responseBody);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(token!=null)
-                            {
-                                CommonVari.token = token;
-                                Intent intent1 = new Intent(LoginActivity.this,MainActivity.class);
-                                startActivity(intent1);
-                                CommonVari.FAG = 1;
-                                finish();
-                            }else{
-                                new ToastUtil(LoginActivity.this,0);
-                            }
-                        }
-                    });
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        },map);
-    }
-}
-</code></pre><p>}<br>```</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/10/初试OkHttp3实现登录功能/" data-id="cj1f4zd5d0002ncuqljwwh4bu" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/08/hello-world/" class="article-date">
-  <time datetime="2017-04-08T02:46:28.480Z" itemprop="datePublished">2017-04-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          初试OkHttp3实现登录功能
         
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/08/hello-world/">Hello World</a>
-    </h1>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#这是冯志远的博客</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/08/hello-world/" data-id="cj1f4zd4y0001ncuqcddd3c3f" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
 
 </section>
         
