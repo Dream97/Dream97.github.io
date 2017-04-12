@@ -5,17 +5,17 @@
   
   <title>Hi，我们再来聊一聊Java的单例吧（转） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="单例(Singleton)应该是开发者们最熟悉的设计模式了本文转自http://www.iteye.com/news/32322 ##1. 前言，并且好像也是最容易实现的——基本上每个开发者都能够随手写出——但是，真的是这样吗？作为一个Java开发者，也许你觉得自己对单例模式的了解已经足够多了。我并不想危言耸听说一定还有你不知道的——毕竟我自己的了解也的确有限，但究竟你自己了解的程度到底怎样呢？往">
+  <meta name="description" content="单例(Singleton)应该是开发者们最熟悉的设计模式了">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hi，我们再来聊一聊Java的单例吧（转）">
 <meta property="og:url" content="http://yoursite.com/2017/04/12/Hi，我们再来聊一聊Java的单例吧（转） (2)/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="单例(Singleton)应该是开发者们最熟悉的设计模式了本文转自http://www.iteye.com/news/32322 ##1. 前言，并且好像也是最容易实现的——基本上每个开发者都能够随手写出——但是，真的是这样吗？作为一个Java开发者，也许你觉得自己对单例模式的了解已经足够多了。我并不想危言耸听说一定还有你不知道的——毕竟我自己的了解也的确有限，但究竟你自己了解的程度到底怎样呢？往">
-<meta property="og:updated_time" content="2017-04-12T15:48:25.508Z">
+<meta property="og:description" content="单例(Singleton)应该是开发者们最熟悉的设计模式了">
+<meta property="og:updated_time" content="2017-04-12T15:51:01.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hi，我们再来聊一聊Java的单例吧（转）">
-<meta name="twitter:description" content="单例(Singleton)应该是开发者们最熟悉的设计模式了本文转自http://www.iteye.com/news/32322 ##1. 前言，并且好像也是最容易实现的——基本上每个开发者都能够随手写出——但是，真的是这样吗？作为一个Java开发者，也许你觉得自己对单例模式的了解已经足够多了。我并不想危言耸听说一定还有你不知道的——毕竟我自己的了解也的确有限，但究竟你自己了解的程度到底怎样呢？往">
+<meta name="twitter:description" content="单例(Singleton)应该是开发者们最熟悉的设计模式了">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -53,9 +53,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -86,7 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>单例(Singleton)应该是开发者们最熟悉的设计模式了<br><!--分割线--><br>本文转自<a href="http://www.iteye.com/news/32322" target="_blank" rel="external">http://www.iteye.com/news/32322</a></p>
+        <p>单例(Singleton)应该是开发者们最熟悉的设计模式了<br><a id="more"></a><br>本文转自<a href="http://www.iteye.com/news/32322" target="_blank" rel="external">http://www.iteye.com/news/32322</a></p>
 <p>##1. 前言<br>，并且好像也是最容易实现的——基本上每个开发者都能够随手写出——但是，真的是这样吗？<br>作为一个Java开发者，也许你觉得自己对单例模式的了解已经足够多了。我并不想危言耸听说一定还有你不知道的——毕竟我自己的了解也的确有限，但究竟你自己了解的程度到底怎样呢？往下看，我们一起来聊聊看~ </p>
 <p>##2. 什么是单例？<br>单例对象的类必须保证只有一个实例存在——这是维基百科上对单例的定义，这也可以作为对意图实现单例模式的代码进行检验的标准。 </p>
 <p>对单例的实现可以分为两大类——懒汉式和饿汉式，他们的区别在于：<br><strong>懒汉式：指全局的单例实例在第一次被使用时构建。</strong><br><strong>饿汉式：指全局的单例实例在类装载时构建。 </strong></p>
@@ -139,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/12/Hi，我们再来聊一聊Java的单例吧（转） (2)/" data-id="cj1f4zd4i0000ncuq71qgqy9p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/12/Hi，我们再来聊一聊Java的单例吧（转） (2)/" data-id="cj1f4zd4i0000ncuq71qgqy9p" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -149,7 +149,7 @@
 <nav id="article-nav">
   
     <a href="/2017/04/10/初试OkHttp3实现登录功能/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">Récent</strong>
       <div class="article-nav-title">
         
           初试OkHttp3实现登录功能
@@ -187,7 +187,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -216,7 +216,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
