@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>在Fragment中怎么调用onActivityResult | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Fragment中怎么调用onActivityResult">
+<meta property="og:url" content="http://yoursite.com/2017/07/11/在Fragment中怎么调用onActivityResult/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？">
+<meta property="og:updated_time" content="2017-07-11T08:27:53.977Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="在Fragment中怎么调用onActivityResult">
+<meta name="twitter:description" content="我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -149,16 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-在Fragment中怎么调用onActivityResult" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-在Fragment中怎么调用onActivityResult" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/11/在Fragment中怎么调用onActivityResult/">在Fragment中怎么调用onActivityResult</a>
+    <h1 class="article-title" itemprop="name">
+      在Fragment中怎么调用onActivityResult
     </h1>
   
 
@@ -171,65 +174,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？<br>
-        
-          <a class="article-more-a" href="/2017/07/11/在Fragment中怎么调用onActivityResult/#more">more >></a>
-        
-      
+        <p>我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？<br><a id="more"></a></p>
+<p>##前言：</p>
+<ul>
+<li>我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？<br>##第一步：</li>
+<li><p>在使用fragment的activity上这样操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span>         resultCode, Intent intent)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">super</span>.onActivityResult(requestCode,resultCode,intent);</div><div class="line">    Fragment fragment = RepairFragment.getInstance();</div><div class="line">    fragment.onActivityResult(requestCode,resultCode,intent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>其中Fragment fragment = RepairFragment.getInstance();这句的意思是找到相对应的fragment，也可以通过fragment管理器</p>
+<figure class="highlight plain"><figcaption><span>f = fragmentManager.findFragmentByTag(curFragmentTag);```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">##第二步</div><div class="line">- 在要调用onActivityResult的fragment上执行相对应的操作</div><div class="line">```java</div><div class="line">    @Override</div><div class="line">    public void onActivityResult(int requestCode,int resultCode,Intent intent)</div><div class="line">    &#123;</div><div class="line">        super.onActivityResult(requestCode,resultCode,intent);</div><div class="line">        switch(requestCode)&#123;</div><div class="line">            case REQUEST_CODE_GALLERY:</div><div class="line">                if(resultCode == RESULT_OK)&#123;</div><div class="line">                    imgList.clear();//</div><div class="line">                    for(int i = 0; i&lt;= Album.parseResult(intent).size()-1; i++)&#123;</div><div class="line">                        imgList.add(Album.parseResult(intent).get(i));</div><div class="line">                    &#125;</div><div class="line">                    adapter.notifyDataSetChanged();</div><div class="line">                &#125;</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>###提示一点，在acitvity中传递Context时我们可以用this，那如果是在fragment中呢？我们就可以用getActivity（)来代替</p>
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/11/在Fragment中怎么调用onActivityResult/">展开全文 >></a>
-        </p>
       
 
       
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hi，我们再来聊一聊Java的单例吧（转） (2)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/Hi，我们再来聊一聊Java的单例吧（转） (2)/">Hi，我们再来聊一聊Java的单例吧（转）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/12/Hi，我们再来聊一聊Java的单例吧（转） (2)/" class="archive-article-date">
-  	<time datetime="2017-04-12T15:32:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>单例(Singleton)应该是开发者们最熟悉的设计模式了<br>
-        
-          <a class="article-more-a" href="/2017/04/12/Hi，我们再来聊一聊Java的单例吧（转） (2)/#more">more >></a>
-        
-      
-
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -238,18 +218,78 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/12/Hi，我们再来聊一聊Java的单例吧（转） (2)/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/11/在Fragment中怎么调用onActivityResult/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+    <a href="/2017/04/12/定制圆角EditText与圆角Button/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          定制圆角EditText与圆角Button
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
 
 
@@ -257,164 +297,10 @@
 
 
   
-    <article id="post-初试OkHttp3实现登录功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/初试OkHttp3实现登录功能/">初试OkHttp3实现登录功能</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2017/04/12/初试OkHttp3实现登录功能/" class="archive-article-date">
-  	<time datetime="2017-04-12T15:32:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>听说OkHttp3很好用喔！<br>
-        
-          <a class="article-more-a" href="/2017/04/12/初试OkHttp3实现登录功能/#more">more >></a>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/12/初试OkHttp3实现登录功能/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-定制圆角EditText与圆角Button" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/定制圆角EditText与圆角Button/">定制圆角EditText与圆角Button</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/12/定制圆角EditText与圆角Button/" class="archive-article-date">
-  	<time datetime="2017-04-12T15:32:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>偶尔也搞一界面<br>
-        
-          <a class="article-more-a" href="/2017/04/12/定制圆角EditText与圆角Button/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/12/定制圆角EditText与圆角Button/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/08/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/08/hello-world/" class="archive-article-date">
-  	<time datetime="2017-04-08T02:46:28.480Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#这是冯志远的博客</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/08/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
 
 
           </div>
@@ -436,8 +322,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
