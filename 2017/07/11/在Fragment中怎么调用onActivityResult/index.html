@@ -9,13 +9,13 @@
   <title>在Fragment中怎么调用onActivityResult | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？">
-<meta name="keywords">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Fragment中怎么调用onActivityResult">
 <meta property="og:url" content="http://yoursite.com/2017/07/11/在Fragment中怎么调用onActivityResult/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？">
-<meta property="og:updated_time" content="2017-07-11T08:27:53.977Z">
+<meta property="og:updated_time" content="2017-07-23T15:15:13.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Fragment中怎么调用onActivityResult">
 <meta name="twitter:description" content="我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？">
@@ -175,18 +175,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？<br><a id="more"></a></p>
-<p>##前言：</p>
-<ul>
-<li>我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？<br>##第一步：</li>
+<h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><ul>
+<li>我们都知道在activity中通过onActivity可以接收另一activty关闭时传回的requestCode、resultCode和data等，但是我们的大多数操作是在fragment中实现的，那么，我们又应该怎么样在fragment中调onActivityResult呢？<h2 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h2></li>
 <li><p>在使用fragment的activity上这样操作</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span>         resultCode, Intent intent)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">super</span>.onActivityResult(requestCode,resultCode,intent);</div><div class="line">    Fragment fragment = RepairFragment.getInstance();</div><div class="line">    fragment.onActivityResult(requestCode,resultCode,intent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>其中Fragment fragment = RepairFragment.getInstance();这句的意思是找到相对应的fragment，也可以通过fragment管理器</p>
-<figure class="highlight plain"><figcaption><span>f = fragmentManager.findFragmentByTag(curFragmentTag);```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">##第二步</div><div class="line">- 在要调用onActivityResult的fragment上执行相对应的操作</div><div class="line">```java</div><div class="line">    @Override</div><div class="line">    public void onActivityResult(int requestCode,int resultCode,Intent intent)</div><div class="line">    &#123;</div><div class="line">        super.onActivityResult(requestCode,resultCode,intent);</div><div class="line">        switch(requestCode)&#123;</div><div class="line">            case REQUEST_CODE_GALLERY:</div><div class="line">                if(resultCode == RESULT_OK)&#123;</div><div class="line">                    imgList.clear();//</div><div class="line">                    for(int i = 0; i&lt;= Album.parseResult(intent).size()-1; i++)&#123;</div><div class="line">                        imgList.add(Album.parseResult(intent).get(i));</div><div class="line">                    &#125;</div><div class="line">                    adapter.notifyDataSetChanged();</div><div class="line">                &#125;</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>f = fragmentManager.findFragmentByTag(curFragmentTag);```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 第二步</div><div class="line">- 在要调用onActivityResult的fragment上执行相对应的操作</div><div class="line">```java</div><div class="line">    @Override</div><div class="line">    public void onActivityResult(int requestCode,int resultCode,Intent intent)</div><div class="line">    &#123;</div><div class="line">        super.onActivityResult(requestCode,resultCode,intent);</div><div class="line">        switch(requestCode)&#123;</div><div class="line">            case REQUEST_CODE_GALLERY:</div><div class="line">                if(resultCode == RESULT_OK)&#123;</div><div class="line">                    imgList.clear();//</div><div class="line">                    for(int i = 0; i&lt;= Album.parseResult(intent).size()-1; i++)&#123;</div><div class="line">                        imgList.add(Album.parseResult(intent).get(i));</div><div class="line">                    &#125;</div><div class="line">                    adapter.notifyDataSetChanged();</div><div class="line">                &#125;</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>###提示一点，在acitvity中传递Context时我们可以用this，那如果是在fragment中呢？我们就可以用getActivity（)来代替</p>
-
+<h3 id="提示一点，在acitvity中传递Context时我们可以用this，那如果是在fragment中呢？我们就可以用getActivity（-来代替"><a href="#提示一点，在acitvity中传递Context时我们可以用this，那如果是在fragment中呢？我们就可以用getActivity（-来代替" class="headerlink" title="提示一点，在acitvity中传递Context时我们可以用this，那如果是在fragment中呢？我们就可以用getActivity（)来代替"></a>提示一点，在acitvity中传递Context时我们可以用this，那如果是在fragment中呢？我们就可以用getActivity（)来代替</h3>
       
 
       
@@ -215,6 +213,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -395,6 +404,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">xml</a>
               </li>
             
             <div class="clearfix"></div>
